@@ -1,6 +1,7 @@
 # README #
 
 Gioco della Vita
+
 A school project.
 I don't know if i ever update this.
 
