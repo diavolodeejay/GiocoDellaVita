@@ -115,6 +115,7 @@ namespace GiocoDellaVita
 
     class Volpe : Personaggio
     {
+        //immagine della volpe
         public Bitmap img = new Bitmap(Properties.Resources.Dog);
         public override string Muovi(int x, int y)
         {
@@ -139,7 +140,11 @@ namespace GiocoDellaVita
             string nome = "cell" + this.x.ToString() + this.y.ToString();
             return nome;
         }
-
+        /// <summary>
+        /// Determina il percorso da fare per andare a mangiare il coniglio più vicino
+        /// </summary>
+        /// <param name="vittime">Array di conigli dove cercare il coniglio più vicino</param>
+        /// <returns>La nuova posizione della volpe</returns>
         public string Percorso(Coniglio[] vittime)
         {
             int nx = 0, ny = 0;
