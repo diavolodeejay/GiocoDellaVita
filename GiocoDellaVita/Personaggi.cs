@@ -27,13 +27,13 @@ namespace GiocoDellaVita
             }
         }
 
-        public int tipo
+    /*    public int tipo
         {
             get
             {
                 return mTipo;
             }
-        }
+        }*/
 
         public int energia
         {
@@ -77,7 +77,7 @@ namespace GiocoDellaVita
             vivo = true;
             mTipo = 0;
         }
-
+/*
         /// <summary>
         /// Crea un personaggio con 100 di energia
         /// </summary>
@@ -98,17 +98,7 @@ namespace GiocoDellaVita
             }
             vivo = true;
             mTipo = Tipo;
-        }
-
-        public Personaggio(int energia,int Tipo,int x,int y)
-        {
-            this.energia = energia;
-            vivo = true;
-            mX = x;
-            mY = y;
-            mTipo = Tipo;
-        }
-
+        }*/
         public abstract string Muovi(int x,int y);
         //public abstract string Percorso(Personaggio vittima);
     }
