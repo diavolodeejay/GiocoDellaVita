@@ -130,16 +130,22 @@
             this.cell52 = new System.Windows.Forms.PictureBox();
             this.cell80 = new System.Windows.Forms.PictureBox();
             this.cell10 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Titolo = new System.Windows.Forms.Label();
             this.Start = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CaroteUpDown = new System.Windows.Forms.NumericUpDown();
             this.GameEngine = new System.ComponentModel.BackgroundWorker();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Stop = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ConigliUpDown = new System.Windows.Forms.NumericUpDown();
             this.VolpiUpDown = new System.Windows.Forms.NumericUpDown();
+            this.KillVolpi = new System.Windows.Forms.Label();
+            this.KillConigli = new System.Windows.Forms.Label();
+            this.KillC = new System.Windows.Forms.Label();
+            this.KillCa = new System.Windows.Forms.Label();
+            this.TurnoLabel = new System.Windows.Forms.Label();
+            this.TurnoS = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cell49)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cell29)).BeginInit();
@@ -999,7 +1005,7 @@
             // 
             // cell93
             // 
-            this.cell93.Image = ((System.Drawing.Image)(resources.GetObject("cell93.Image")));
+            this.cell93.Image = global::GiocoDellaVita.Properties.Resources.weed;
             this.cell93.InitialImage = null;
             this.cell93.Location = new System.Drawing.Point(543, 183);
             this.cell93.Name = "cell93";
@@ -1049,7 +1055,7 @@
             // 
             // cell72
             // 
-            this.cell72.Image = ((System.Drawing.Image)(resources.GetObject("cell72.Image")));
+            this.cell72.Image = global::GiocoDellaVita.Properties.Resources.weed;
             this.cell72.InitialImage = null;
             this.cell72.Location = new System.Drawing.Point(423, 123);
             this.cell72.Name = "cell72";
@@ -1377,16 +1383,16 @@
             this.cell10.TabIndex = 1;
             this.cell10.TabStop = false;
             // 
-            // label1
+            // Titolo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Gioco della Vita";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.Titolo.AutoSize = true;
+            this.Titolo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titolo.Location = new System.Drawing.Point(13, 13);
+            this.Titolo.Name = "Titolo";
+            this.Titolo.Size = new System.Drawing.Size(249, 24);
+            this.Titolo.TabIndex = 1;
+            this.Titolo.Text = "Gioco della Vita by Di Nuovo";
+            this.Titolo.Click += new System.EventHandler(this.label1_Click);
             // 
             // Start
             // 
@@ -1435,15 +1441,16 @@
             this.GameEngine.WorkerSupportsCancellation = true;
             this.GameEngine.DoWork += new System.ComponentModel.DoWorkEventHandler(this.GameEngine_DoWork);
             // 
-            // button2
+            // Stop
             // 
-            this.button2.Location = new System.Drawing.Point(847, 53);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Ferma tutto";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Stop.Enabled = false;
+            this.Stop.Location = new System.Drawing.Point(847, 53);
+            this.Stop.Name = "Stop";
+            this.Stop.Size = new System.Drawing.Size(75, 23);
+            this.Stop.TabIndex = 6;
+            this.Stop.Text = "Ferma tutto";
+            this.Stop.UseVisualStyleBackColor = true;
+            this.Stop.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -1507,20 +1514,80 @@
             0,
             0});
             // 
+            // KillVolpi
+            // 
+            this.KillVolpi.AutoSize = true;
+            this.KillVolpi.Location = new System.Drawing.Point(652, 251);
+            this.KillVolpi.Name = "KillVolpi";
+            this.KillVolpi.Size = new System.Drawing.Size(68, 13);
+            this.KillVolpi.TabIndex = 11;
+            this.KillVolpi.Text = "Conigli uccisi";
+            // 
+            // KillConigli
+            // 
+            this.KillConigli.AutoSize = true;
+            this.KillConigli.Location = new System.Drawing.Point(649, 293);
+            this.KillConigli.Name = "KillConigli";
+            this.KillConigli.Size = new System.Drawing.Size(85, 13);
+            this.KillConigli.TabIndex = 12;
+            this.KillConigli.Text = "Carote Mangiate";
+            // 
+            // KillC
+            // 
+            this.KillC.AutoSize = true;
+            this.KillC.Location = new System.Drawing.Point(815, 251);
+            this.KillC.Name = "KillC";
+            this.KillC.Size = new System.Drawing.Size(13, 13);
+            this.KillC.TabIndex = 13;
+            this.KillC.Text = "0";
+            // 
+            // KillCa
+            // 
+            this.KillCa.AutoSize = true;
+            this.KillCa.Location = new System.Drawing.Point(815, 293);
+            this.KillCa.Name = "KillCa";
+            this.KillCa.Size = new System.Drawing.Size(13, 13);
+            this.KillCa.TabIndex = 14;
+            this.KillCa.Text = "0";
+            // 
+            // TurnoLabel
+            // 
+            this.TurnoLabel.AutoSize = true;
+            this.TurnoLabel.Location = new System.Drawing.Point(652, 333);
+            this.TurnoLabel.Name = "TurnoLabel";
+            this.TurnoLabel.Size = new System.Drawing.Size(35, 13);
+            this.TurnoLabel.TabIndex = 15;
+            this.TurnoLabel.Text = "Turno";
+            // 
+            // TurnoS
+            // 
+            this.TurnoS.AutoSize = true;
+            this.TurnoS.Location = new System.Drawing.Point(792, 333);
+            this.TurnoS.Name = "TurnoS";
+            this.TurnoS.Size = new System.Drawing.Size(13, 13);
+            this.TurnoS.TabIndex = 16;
+            this.TurnoS.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.TurnoS);
+            this.Controls.Add(this.TurnoLabel);
+            this.Controls.Add(this.KillCa);
+            this.Controls.Add(this.KillC);
+            this.Controls.Add(this.KillConigli);
+            this.Controls.Add(this.KillVolpi);
             this.Controls.Add(this.VolpiUpDown);
             this.Controls.Add(this.ConigliUpDown);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Stop);
             this.Controls.Add(this.CaroteUpDown);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Start);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Titolo);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Gioco della vita";
@@ -1636,7 +1703,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Titolo;
         private System.Windows.Forms.PictureBox cell00;
         private System.Windows.Forms.PictureBox cell10;
         private System.Windows.Forms.PictureBox cell20;
@@ -1741,11 +1808,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown CaroteUpDown;
         private System.ComponentModel.BackgroundWorker GameEngine;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown ConigliUpDown;
         private System.Windows.Forms.NumericUpDown VolpiUpDown;
+        private System.Windows.Forms.Label KillVolpi;
+        private System.Windows.Forms.Label KillConigli;
+        private System.Windows.Forms.Label KillC;
+        private System.Windows.Forms.Label KillCa;
+        private System.Windows.Forms.Label TurnoLabel;
+        private System.Windows.Forms.Label TurnoS;
     }
 }
 

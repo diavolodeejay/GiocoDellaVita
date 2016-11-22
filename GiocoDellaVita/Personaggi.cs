@@ -13,7 +13,8 @@ namespace GiocoDellaVita
 {
     abstract class Personaggio
     {
-        private int mEnergia,mX,mY,mTipo;
+        //Proprietà condivise da tutti i personaggi
+        private int mEnergia,mX,mY;
         private bool mVivo;    
         public bool vivo
         {
@@ -26,15 +27,6 @@ namespace GiocoDellaVita
                 mVivo = value;
             }
         }
-
-    /*    public int tipo
-        {
-            get
-            {
-                return mTipo;
-            }
-        }*/
-
         public int energia
         {
             get
@@ -70,39 +62,16 @@ namespace GiocoDellaVita
                 mY = value;
             }
         }
-
+        //costruttore di default che assegna 100 di energia e imposta come vivo il personaggio
         public Personaggio()
         {
             energia = 100;
             vivo = true;
-            mTipo = 0;
         }
-/*
-        /// <summary>
-        /// Crea un personaggio con 100 di energia
-        /// </summary>
-        /// <param name="Tipo">Il tipo di personaggio. -1 Carota morta, 0 Carota, 1 Coniglio, 2 Volpe</param>
-        public Personaggio(int Tipo)
-        {
-            if (Tipo == 0)
-            {
-                energia = 10;
-            }
-            else if (Tipo == 1)
-            {
-                energia = 14;
-            }
-            else if (Tipo == 2)
-            {
-                energia = 12;
-            }
-            vivo = true;
-            mTipo = Tipo;
-        }*/
+        //Classe astratta del movimento
         public abstract string Muovi(int x,int y);
-        //public abstract string Percorso(Personaggio vittima);
     }
-
+    //Classe Volpe
     class Volpe : Personaggio
     {
         //immagine della volpe
@@ -150,6 +119,7 @@ namespace GiocoDellaVita
                     vicino[2] = vittima.y;
                 }
             }
+            //Dove andare in base alla posizione del personaggio attuale e del bersaglio
             if (this.x > vicino[1])
             {
                 if (this.y > vicino[2])
@@ -212,9 +182,13 @@ namespace GiocoDellaVita
         }
     }
 
+
+    //Classe Coniglio
     class Coniglio : Personaggio
     {
+        //L'immagine del coniglio
         public Bitmap img = new Bitmap(Properties.Resources.yoshi);
+        //Metodo per il movimento che controlla che il coniglio non esca dal campo
         public override string Muovi(int x, int y)
         {
             this.x += x;
@@ -239,8 +213,14 @@ namespace GiocoDellaVita
             return nome;
         }
 
+        /// <summary>
+        /// Determina il percorso da fare per andare a mangiare la carota più vicina. Funziona bene!
+        /// </summary>
+        /// <param name="vittime">L'array di carote dove trovare la carota più vicina</param>
+        /// <returns>Le nuove coordinate del coniglio</returns>
         public string Percorso(Carota[] vittime)
         {
+            //se non ci sono più carote restituisce NOCA.
             if (vittime.Length <= 0)
             {
                 return "NOCA";
@@ -249,6 +229,7 @@ namespace GiocoDellaVita
             double[] vicino = new double[3] {15,0,0};
             foreach(Carota vittima in vittime)
             {
+                //Calcola la carota più vicina
                 double temp = 0;
                 temp = Math.Sqrt(Math.Pow(Convert.ToDouble(this.x) - Convert.ToDouble(vittima.x), 2) + Math.Pow(Convert.ToDouble(this.y) - Convert.ToDouble(vittima.y), 2));
                 if(temp < vicino[0])
@@ -258,6 +239,7 @@ namespace GiocoDellaVita
                     vicino[2] = vittima.y;
                 }
             }
+            //Dove andare in base alla posizione del personaggio attuale e del bersaglio
             if (this.x > vicino[1])
             {
                 if (this.y > vicino[2])
@@ -313,13 +295,18 @@ namespace GiocoDellaVita
             return ris;
         }
 
-        //rifai
-        public string Scappa(Volpe[] prede)
+        /// <summary>
+        /// Determina il percorso da fare per evitare la volpe più vicina. Funziona male!
+        /// </summary>
+        /// <param name="cacciatori">L'array di volpi da evitare</param>
+        /// <returns>Le nuove coordinate del coniglio</returns>
+        public string Scappa(Volpe[] cacciatori)
         {
             int nx = 0, ny = 0;
             double[] vicino = new double[3] { 15, 0, 0 };
-            foreach (Volpe preda in prede)
+            foreach (Volpe preda in cacciatori)
             {
+                //Calcola il personaggio più vicino
                 double temp = 0;
                 temp = Math.Sqrt(Math.Pow(Convert.ToDouble(this.x) - Convert.ToDouble(preda.x), 2) + Math.Pow(Convert.ToDouble(this.y) - Convert.ToDouble(preda.y), 2));
                 if (temp < vicino[0])
@@ -329,6 +316,7 @@ namespace GiocoDellaVita
                     vicino[2] = preda.y;
                 }
             }
+            //Dove andare in base alla posizione del personaggio attuale e del cacciatore.
             if (this.x > vicino[1])
             {
                 if (this.y > vicino[2])
@@ -383,7 +371,9 @@ namespace GiocoDellaVita
             this.energia--;
             return ris;
         }
-
+        /// <summary>
+        /// Costruttore di default
+        /// </summary>
         public Coniglio()
         {
             this.x = 0;
@@ -393,7 +383,8 @@ namespace GiocoDellaVita
 
     class Carota : Personaggio
     {
-        public Bitmap img = new Bitmap(Properties.Resources.Carota);
+        //immagine della carota
+        public Bitmap img = new Bitmap(Properties.Resources.CarotaFalza);
         private bool mMarcio = false;
         public bool Marcio
         {
@@ -407,6 +398,12 @@ namespace GiocoDellaVita
                 mMarcio = value;
             }
         }
+        /// <summary>
+        /// Le carote non si muovono LOL
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <returns>Coordinate dove dovrebbe muoversi. MA LE CAROTE NON SI MUOVONO, SONO CAROTE</returns>
         public override string Muovi(int x, int y)
         {
             string r = "cell" + x.ToString() + y.ToString();
@@ -415,3 +412,5 @@ namespace GiocoDellaVita
         }
     }
 }
+///(C) Di Nuovo Gabriele - 2016 
+///Grazie stackoverflow per esistere.
