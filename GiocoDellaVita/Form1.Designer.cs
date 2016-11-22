@@ -1,6 +1,6 @@
 ﻿namespace GiocoDellaVita
 {
-    partial class Form1
+    partial class Gioco
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gioco));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cell49 = new System.Windows.Forms.PictureBox();
             this.cell29 = new System.Windows.Forms.PictureBox();
@@ -1567,7 +1567,7 @@
             this.TurnoS.TabIndex = 16;
             this.TurnoS.Text = "0";
             // 
-            // Form1
+            // Gioco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1588,7 +1588,8 @@
             this.Controls.Add(this.Start);
             this.Controls.Add(this.Titolo);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
+            this.MaximizeBox = false;
+            this.Name = "Gioco";
             this.Text = "Gioco della vita";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cell49)).EndInit();

@@ -10,7 +10,6 @@ C:\Users\stud3aii_3\Documents\Visual Studio 2012\Projects\GiocoDellaVita\GiocoDe
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\bin\Debug\GiocoDellaVita.exe.config
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\bin\Debug\GiocoDellaVita.exe
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\bin\Debug\GiocoDellaVita.pdb
-D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.Form1.resources
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.Properties.Resources.resources
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.csproj.GenerateResource.Cache
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.exe
@@ -19,3 +18,4 @@ D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Debug
 D:\Documenti\Visual Studio 2015\Git\GiocoDellaVita\GiocoDellaVita\bin\Debug\GiocoDellaVita.exe.config
 D:\Documenti\Visual Studio 2015\Git\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.exe
 D:\Documenti\Visual Studio 2015\Git\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.pdb
+D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Debug\GiocoDellaVita.Gioco.resources

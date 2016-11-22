@@ -21,7 +21,7 @@ namespace GiocoDellaVita
     /// </summary>
 
 
-    public partial class Form1 : Form
+    public partial class Gioco : Form
     {
         int conigliuccisi = 0;
         int turno = 0;
@@ -33,7 +33,7 @@ namespace GiocoDellaVita
         Coniglio[] ConiglioCavia;
         Carota[] Carote;
         bool[,] usato = new bool[9, 9];
-        public Form1()
+        public Gioco()
         {
             InitializeComponent();
             
@@ -56,6 +56,8 @@ namespace GiocoDellaVita
             Stop.Enabled = true;
             VolpiUpDown.Enabled = false;
             CaroteUpDown.Enabled = false;
+            conigliuccisi = 0;
+            carotemangiate = 0;
             ConigliUpDown.Enabled = false;
             //crea volpi, conigli e carote in base al numero impostato
             volpecavia = new Volpe[(int)VolpiUpDown.Value];
@@ -122,7 +124,21 @@ namespace GiocoDellaVita
                 ca.energia = 8;
             }
             // Inizia il gioco
-            GameEngine.RunWorkerAsync();
+            try
+            {
+                GameEngine.RunWorkerAsync();
+            }
+            catch
+            {
+                turno = 0;
+                Start.Enabled = true;
+                Stop.Enabled = false;
+                VolpiUpDown.Enabled = true;
+                CaroteUpDown.Enabled = true;
+                ConigliUpDown.Enabled = true;
+                MessageBox.Show("Per favore attendi un secondo...", "Attendi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         //Qui si fa tutto
@@ -130,40 +146,40 @@ namespace GiocoDellaVita
         {
             //se viene premuto il pulsante si ferma tutto. E' UNO STOP
             BackgroundWorker fermo = sender as BackgroundWorker;
-            while (!fermo.CancellationPending)
-            {
-                if (fermo.CancellationPending == true)
+                while (!fermo.CancellationPending)
                 {
-                    e.Cancel = true;
-                    break;
-                }
-                CleanCampo();
-                //movimenti
-                foreach (Carota ca in Carote)
-                {
-                    string coord = ca.Muovi(ca.x, ca.y);
-                    Draw(coord, ca.img);
-                }
-                foreach (Coniglio cc in ConiglioCavia)
-                {
-                    string coord = cc.Percorso(Carote);
-                    //se non ci sono carote scappo dalle volpi
-                    if (coord == "NOCA")
+                    if (fermo.CancellationPending == true)
                     {
-                        //La fuga funziona un po male. Se il coniglio si trova in un angolo è morto, se la volpe non muore prima di fame.
-                        coord = cc.Scappa(volpecavia);
+                        e.Cancel = true;
+                        break;
                     }
-                    Draw(coord, cc.img);
-                }
-                foreach (Volpe vp in volpecavia)
-                {
-                    string coord = vp.Percorso(ConiglioCavia);
-                    Draw(coord, vp.img);
-                }
-                FineTurno();
-                //Attesa di un secondo tra ogni turno
-                Thread.Sleep(1000);
-            }
+                    CleanCampo();
+                    //movimenti
+                    foreach (Carota ca in Carote)
+                    {
+                        string coord = ca.Muovi(ca.x, ca.y);
+                        Draw(coord, ca.img);
+                    }
+                    foreach (Coniglio cc in ConiglioCavia)
+                    {
+                        string coord = cc.Percorso(Carote);
+                        //se non ci sono carote scappo dalle volpi
+                        if (coord == "NOCA")
+                        {
+                            //La fuga funziona un po male. Se il coniglio si trova in un angolo è morto, se la volpe non muore prima di fame.
+                            coord = cc.Scappa(volpecavia);
+                        }
+                        Draw(coord, cc.img);
+                    }
+                    foreach (Volpe vp in volpecavia)
+                    {
+                        string coord = vp.Percorso(ConiglioCavia);
+                        Draw(coord, vp.img);
+                    }
+                    FineTurno();
+                    //Attesa di un secondo tra ogni turno
+                    Thread.Sleep(1000);
+                }       
         }
         //ferma il backgroudworker
         private void button2_Click(object sender, EventArgs e)
@@ -291,6 +307,7 @@ namespace GiocoDellaVita
                 contaa++;
             }
             turno++;
+            //uso un invoke per modificare i parametri del form dal backgroundworker. Stackoverflow mi ha insegnato così
             Invoke((MethodInvoker)delegate
             {
                 KillC.Text = conigliuccisi.ToString();
@@ -334,12 +351,10 @@ namespace GiocoDellaVita
             }
             else if (ConiglioCavia.Length == 0 && volpecavia.Length > 0 && Carote.Length == 0)
             {
+                FineMusica();
                 MessageBox.Show("Gioco finito!\nHanno vinto le volpi!", "FINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Invoke((MethodInvoker)delegate
                 {
-                    System.Media.SoundPlayer playercani = new System.Media.SoundPlayer();
-                    playercani.SoundLocation = "Dogsong.wav";
-                    playercani.PlayLooping();
                     Start.Visible = false;
                     Stop.Visible = false;
                     CaroteUpDown.Visible = false;
@@ -348,6 +363,7 @@ namespace GiocoDellaVita
                     label2.Visible = false;
                     label3.Visible = false;
                     label4.Visible = false;
+                    
                 });
 
                 GameEngine.CancelAsync();
@@ -369,6 +385,13 @@ namespace GiocoDellaVita
 
                 GameEngine.CancelAsync();
             }
+        }
+
+        void FineMusica()
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            player.SoundLocation = "Dogsong.wav";
+            player.PlayLooping();
         }
 
     }
