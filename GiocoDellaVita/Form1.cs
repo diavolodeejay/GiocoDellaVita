@@ -337,6 +337,9 @@ namespace GiocoDellaVita
                 MessageBox.Show("Gioco finito!\nHanno vinto le volpi!", "FINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Invoke((MethodInvoker)delegate
                 {
+                    System.Media.SoundPlayer playercani = new System.Media.SoundPlayer();
+                    playercani.SoundLocation = "Dogsong.wav";
+                    playercani.PlayLooping();
                     Start.Visible = false;
                     Stop.Visible = false;
                     CaroteUpDown.Visible = false;
@@ -367,12 +370,6 @@ namespace GiocoDellaVita
                 GameEngine.CancelAsync();
             }
         }
-
-        private void CaroteUpDown_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }

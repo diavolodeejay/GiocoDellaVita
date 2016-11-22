@@ -1434,7 +1434,6 @@
             0,
             0,
             0});
-            this.CaroteUpDown.ValueChanged += new System.EventHandler(this.CaroteUpDown_ValueChanged);
             // 
             // GameEngine
             // 
@@ -1562,7 +1561,7 @@
             // TurnoS
             // 
             this.TurnoS.AutoSize = true;
-            this.TurnoS.Location = new System.Drawing.Point(792, 333);
+            this.TurnoS.Location = new System.Drawing.Point(815, 333);
             this.TurnoS.Name = "TurnoS";
             this.TurnoS.Size = new System.Drawing.Size(13, 13);
             this.TurnoS.TabIndex = 16;
