@@ -35,8 +35,7 @@ namespace GiocoDellaVita
         bool[,] usato = new bool[9, 9];
         public Gioco()
         {
-            InitializeComponent();
-            
+            InitializeComponent(); 
         }
 
         private void label1_Click(object sender, EventArgs e)

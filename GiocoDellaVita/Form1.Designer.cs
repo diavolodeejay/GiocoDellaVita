@@ -1588,6 +1588,7 @@
             this.Controls.Add(this.Start);
             this.Controls.Add(this.Titolo);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Gioco";
             this.Text = "Gioco della vita";
