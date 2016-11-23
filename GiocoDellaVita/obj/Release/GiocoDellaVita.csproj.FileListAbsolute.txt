@@ -6,3 +6,4 @@ D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Relea
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Release\GiocoDellaVita.csproj.GenerateResource.Cache
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Release\GiocoDellaVita.exe
 D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Release\GiocoDellaVita.pdb
+D:\Documenti\Visual Studio 2015\Projects\GiocoDellaVita\GiocoDellaVita\obj\Release\GiocoDellaVita.csprojResolveAssemblyReference.cache
